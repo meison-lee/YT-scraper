@@ -1,13 +1,15 @@
 # app.py
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from scraper import youtube_search
 
+
+
 app = Flask(__name__)
 CORS(app)
 
-
-api_key = 'AIzaSyDOx6_xYze6XCB0PHwXJlWecMDTPP1krZ8'
+api_key = os.getenv('api_key')
 
 @app.route('/api/search', methods=['GET'])
 # @cross_origin(origin='http://localhost:3000')
