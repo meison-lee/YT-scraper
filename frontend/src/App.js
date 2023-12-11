@@ -1,13 +1,19 @@
-// import logo from './logo.svg';
-// import './App.css';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Note from "./component/note";
 import Search from "./component/search";
 
 function App() {
   return (
-    <div className="App">
-      <Search></Search>
-    </div>
+    <Router>
+    <Routes>
+      <Route path="/"  element={<Search/>} />
+      <Route path="/note"  element={<Note/>} />
+      {/* <Route path="/note" element={</>} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/note" element={<TextEditor/>} />
+      </Route> */}
+    </Routes>
+  </Router>
   );
 }
 

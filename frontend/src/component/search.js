@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
+import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import VideoButton from './videoButton';
+import { AuthContext } from '../AuthContext';
 
 const SearchComponent = () => {
+
+  const {video, setVideo} = useContext(AuthContext);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
+  const navigate = useNavigate();
 
   const handleSearch = async () => {
 
@@ -30,6 +35,8 @@ const SearchComponent = () => {
     // Handle the video selection
     // For example, you might update the state to show the selected video
     console.log("Selected video:", video);
+    setVideo(video);
+    navigate('/note');
   };
 
   return (
