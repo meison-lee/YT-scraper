@@ -1,19 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Note from "./component/note";
 import Search from "./component/search";
+import Navbar from './component/Navbar';
 
 function App() {
   return (
     <Router>
-    <Routes>
-      <Route path="/"  element={<Search/>} />
-      <Route path="/note"  element={<Note/>} />
-      {/* <Route path="/note" element={</>} />
-      <Route element={<ProtectedRoute />}>
-        <Route path="/note" element={<TextEditor/>} />
-      </Route> */}
-    </Routes>
-  </Router>
+      <Navbar/>
+      <Routes>
+        <Route path="/"  element={<Search/>} />
+        <Route path="/note"  element={<Note/>} />
+      </Routes>
+    </Router>
   );
 }
 
