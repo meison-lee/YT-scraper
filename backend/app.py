@@ -16,11 +16,11 @@ api_key = os.getenv('api_key')
 def search():
     print("in the search function")
     query = request.args.get('query', '')
-    results, ids = youtube_search(api_key, query, max_results=10)
-
+    results = youtube_search(api_key, query, max_results=10)
+    print(results)
     # Implement your search logic here
     # For example, you might query a database or an external API
-    return jsonify(results, ids)
+    return jsonify(results)
 
 @app.route('/test', methods=['GET'])
 def test():

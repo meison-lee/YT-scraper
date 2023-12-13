@@ -1,12 +1,12 @@
-import React, { useState, useContext} from 'react';
-import { useNavigate} from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import VideoButton from './videoButton';
 import { AuthContext } from '../AuthContext';
 
 const SearchComponent = () => {
 
-  const {video, setVideo} = useContext(AuthContext);
+  const { video, setVideo } = useContext(AuthContext);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
@@ -15,16 +15,16 @@ const SearchComponent = () => {
 
     try {
 
-      console.log('query', query )
-      axios.get('http://localhost:8080/api/search?query='+query)
-     .then(response => {
-         // handle response
-        console.log(response.data[1][0]);
-        setResults(response.data[1]);
-     })
-     .catch(error => {
-         console.error('Error:', error);
-     });
+      console.log('query', query)
+      axios.get('http://localhost:8080/api/search?query=' + query)
+        .then(response => {
+          // handle response
+          console.log(response.data);
+          setResults(response.data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
     } catch (error) {
       console.error('Error fetching data: ', error);
       setResults([]);
@@ -33,24 +33,52 @@ const SearchComponent = () => {
 
   const chooseVideo = (video) => {
     // Handle the video selection
-    // For example, you might update the state to show the selected video
-    console.log("Selected video:", video);
     setVideo(video);
     navigate('/note');
   };
 
   return (
-    <div >
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
-      <div className='videos_square' style={{display:'flex', justifyContent:'space-around', flexWrap:'wrap'}}>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      height: '100vh'
+    }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginBottom: '20px'
+      }}>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder='Search for video...'
+          style={{
+            fontSize: '1.5em',
+            padding: '10px',
+            borderRadius: '5px',
+            border: '1px solid #ccc',
+            marginBottom: '10px',
+            width: '80%'
+          }}
+        />
+        <button onClick={handleSearch} style={{
+          fontSize: '1.5em',
+          padding: '10px',
+          borderRadius: '5px',
+          border: 'none',
+          backgroundColor: '#007BFF',
+          color: 'white',
+          cursor: 'pointer',
+          width: '80%'
+        }}>Search</button>
+      </div>
+      <div className='videos_square' style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
         {results.map((item, index) => (
-          <VideoButton key={index} video={item} chooseVideo={chooseVideo}/>
-          // <iframe key={index} src={item} title="W3Schools Free Online Web Tutorials"></iframe>
+          <VideoButton key={index} video={item} chooseVideo={chooseVideo} />
         ))}
       </div>
     </div>
