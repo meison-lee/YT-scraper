@@ -1,10 +1,11 @@
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, ARRAY, ForeignKey
-# import psycopg2
+from dotenv import load_dotenv
+import os
 
-# Replace with your actual database connection details
-DATABASE_URL = "postgresql://Meison_Lee:nozZym-xemmy7-ceqsep@scraper-db.postgres.database.azure.com:5432/postgres?sslmode=require"
+load_dotenv()
 
-# psql -h scraper-db.postgres.database.azure.com -U Meison_Lee -d postgres
+DATABASE_URL = os.getenv('DATABASE_URL')
+print(DATABASE_URL)
 
 engine = create_engine(DATABASE_URL)
 metadata = MetaData()
