@@ -4,12 +4,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from scraper import youtube_search
 import table_creation
+from routes.topic import topic_bp
 
 load_dotenv()
 
 
 app = Flask(__name__)
 CORS(app)
+app.register_blueprint(topic_bp)
 
 api_key = os.getenv('YT_API_KEY')
 print(api_key)
