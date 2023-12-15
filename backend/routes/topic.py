@@ -14,9 +14,11 @@ def get_topic():
 @topic_bp.route('/topic', methods=['POST'])
 def create_topic():
     data = request.get_json()
-    new_topic = topic.insert().values(title=data['title'], note=data['note'], user_id=data['user_id'])
+    print("data = ", data)
+    new_topic = topic.insert().values(notes_id=data['notes_id'], user_id=data['user_id'])
     with engine.connect() as connection:
         result = connection.execute(new_topic)
+    print("result = ", result)
     return jsonify({"message": "Topic created successfully"}), 201
 
 @topic_bp.route('/topic/<int:topic_id>', methods=['PUT'])

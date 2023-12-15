@@ -5,6 +5,7 @@ from flask_cors import CORS, cross_origin
 from scraper import youtube_search
 import table_creation
 from routes.topic import topic_bp
+from routes.user import user_bp
 
 load_dotenv()
 
@@ -12,6 +13,7 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 app.register_blueprint(topic_bp)
+app.register_blueprint(user_bp)
 
 api_key = os.getenv('YT_API_KEY')
 print(api_key)
