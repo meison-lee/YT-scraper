@@ -10,3 +10,6 @@ what I learn from this project
 3. basic flask
 4. selecting which DB I am going to use and whether to use the SQLAlchemy ORM. Also choosing where to host my DB(I host it on Azure flexible server for Postgres)
 5. keep going on now
+
+maybe I should try Azure SQL database for free
+https://learn.microsoft.com/en-us/azure/azure-sql/database/free-offer?view=azuresql
